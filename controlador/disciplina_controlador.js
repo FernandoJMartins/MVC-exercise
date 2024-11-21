@@ -20,9 +20,17 @@ class DisciplinaControlador {
         }
     }
 
+    remover(){
+        const codigoElemento = document.querySelector("#codigo");
+        const listaDisciplinas = document.querySelector("#listaDisciplina");
+
+        this.servico.remover(codigoElemento.value);
+
+    }
+
     inserirDisciplinaNoHtml(disciplina, elementoDestino) {
         const disciplinaElemento = document.createElement("li");
-        disciplinaElemento.textContent = `Nome: ${disciplina.nome} - codigo: ${disciplina.codigo} - Alunos: ${disciplina.alunos}`;
+        disciplinaElemento.textContent = `Nome: ${disciplina.nome} - codigo: ${disciplina.codigo}`;
         elementoDestino.appendChild(disciplinaElemento);
     }
 

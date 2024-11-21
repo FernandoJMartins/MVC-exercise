@@ -32,10 +32,20 @@ class DisciplinaService {
     }
 
     inserirAlunoNaDisciplina(codigo, matriculaAluno) {
+        const disciplinaPesquisada = this.pesquisarPorCodigo(codigo);
+        if (disciplinaPesquisada.length == 0) {
+            alert('Disciplina nao cadastrada!');
+            throw new Error('Disciplina nao cadastrada!');
+        }
         this.repositorio.inserirAlunoNaDisciplina(codigo, matriculaAluno);
     }
 
     removerAlunoDaDisciplina(codigo, matriculaAluno) {
+        const disciplinaPesquisada = this.pesquisarPorCodigo(codigo);
+        if (disciplinaPesquisada.length == 0) {
+            alert('Disciplina nao cadastrada!');
+            throw new Error('Disciplina nao cadastrada!');
+        }
         this.repositorio.removerAlunoDaDisciplina(codigo, matriculaAluno);
     }
 }
