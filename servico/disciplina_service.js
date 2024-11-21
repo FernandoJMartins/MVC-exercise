@@ -16,8 +16,11 @@ class DisciplinaService {
     }
 
     pesquisarPorCodigo(codigo) {
-        return this.repositorio.listar().filter(
-            disciplina => disciplina.codigo === codigo);
+        return this.repositorio.pesquisarPorCodigo(codigo);
+    }
+
+    pesquisarDisciplina(codigo) {
+        return this.repositorio.pesquisarDisciplina(codigo);
     }
 
     remover(codigo) {

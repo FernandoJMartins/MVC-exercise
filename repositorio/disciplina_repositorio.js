@@ -19,6 +19,15 @@ class DisciplinaRepositorio {
         return this.disciplinas;
     }
 
+    pesquisarPorCodigo(codigo) {
+        return this.disciplinas.filter(disciplina => disciplina.codigo === codigo);
+    }
+
+    pesquisarDisciplina(codigo) {
+        return this.disciplinas.find(disciplina => disciplina.codigo === codigo);
+    }
+
+
     inserirAlunoNaDisciplina(disciplina, matriculaAluno) {
         for (let i = 0; i < this.disciplinas.length; i++) {
             if (this.disciplinas[i].codigo === disciplina) {

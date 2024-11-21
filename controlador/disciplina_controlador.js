@@ -29,20 +29,27 @@ class DisciplinaControlador {
 
     pesquisarPorCodigo() {
         const codigoElemento = document.querySelector("#codigo");
-        const listaDisciplinas = document.querySelector("#listaDisciplina");
 
-        const disciplinas = this.servico.pesquisarPorCodigo(codigoElemento.value);
+        const disciplina = this.servico.pesquisarPorCodigo(codigoElemento.value);
 
-        listaDisciplinas.innerHTML = '';
-
-        disciplinas.forEach(disciplina => this.inserirDisciplinaNoHtml(disciplina, listaDisciplinas));
+        if (disciplina.length > 0){
+            alert('disciplina encontrada');
+        }
+        else {
+            alert('disciplina nao encontrada');
+        }
     }
 
     inserirAlunoNaDisciplina() {
         const codigoElemento = document.querySelector("#codigo");
         const matriculaElemento = document.querySelector("#aluno");
+        const listaDisciplinas = document.querySelector("#listaAlunosDisciplinaRelacionamento");
+        const alunoInserido = this.servico.inserirAlunoNaDisciplina(codigoElemento.value, matriculaElemento.value);
 
-        this.servico.inserirAlunoNaDisciplina(codigoElemento.value, matriculaElemento.value);
+        const disciplina = this.servico.pesquisarDisciplina(codigoElemento.value);
+        console.log(disciplina);
+            this.inserirAlunoNoHtml(disciplina, listaDisciplinas);
+        
     }
 
     removerAlunoDaDisciplina() {
@@ -50,6 +57,19 @@ class DisciplinaControlador {
         const matriculaElemento = document.querySelector("#aluno");
 
         this.servico.removerAlunoDaDisciplina(codigoElemento.value, matriculaElemento.value);
+    }
+
+
+    inserirAlunoNoHtml(disciplina, elementoDestino) {
+
+        const DisciplinaAlunoRelacionamento = document.createElement("li");
+        if (disciplina.alunos.length > 0) {
+            DisciplinaAlunoRelacionamento.innerHTML = '';
+        }
+        
+        DisciplinaAlunoRelacionamento.textContent = `Nome: ${disciplina.nome} - codigo: ${disciplina.codigo} - Alunos: ${disciplina.alunos}`;
+
+        elementoDestino.appendChild(DisciplinaAlunoRelacionamento);
     }
 }
 
